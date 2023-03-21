@@ -1,0 +1,80 @@
+[
+    {
+        "desc": ".gitignore",
+        "label": ".gitignore"
+    },
+    {
+        "desc": ".gitattributes",
+        "label": ".gitattributes"
+    }, {
+        "desc": ".editorconfig",
+        "label": ".editorconfig"
+    },
+    {
+        "desc": ".eslintignore",
+        "label": ".eslintignore"
+    },
+    {
+        "desc": ".eslintrc.js",
+        "label": ".eslintrc.js"
+    },
+    {
+        "desc": ".eslintrc.json",
+        "label": ".eslintrc.json"
+    },
+    {
+        "desc": ".flowconfig",
+        "label": ".flowconfig"
+    },
+    {
+        "desc": ".prettierignore",
+        "label": ".prettierignore"
+    },
+    {
+        "desc": ".prettierrc.json",
+        "label": ".prettierrc.json"
+    },
+    {
+        "desc": ".travis.yml",
+        "label": ".travis.yml"
+    },
+    {
+        "desc": ".yarnrc",
+        "label": ".yarnrc"
+    },
+    {
+        "desc": "License_Apache_2.0",
+        "label": "Apache-2.0"
+    },
+    {
+        "desc": "License_GPL_2.0",
+        "label": "GPL-2.0"
+    },
+    {
+        "desc": "License_GPL_3.0",
+        "label": "GPL-3.0"
+    },
+    {
+        "desc": "License_LGPL_3.0",
+        "label": "LGPL-3.0"
+    },
+    {
+        "desc": "License_MPL_2.0",
+        "label": "Mozilla-2.0"
+    },
+    {
+        "desc": "License_MIT",
+        "label": "MIT"
+    },
+    {
+        "desc": "License_BSD_2_Clause",
+        "label": "BSD-2-Clause"
+    }, {
+        "desc": "License_BSD_3_Clause",
+        "label": "BSD-3-Clause"
+    },
+    {
+        "desc": "License_BSD_3_Clause_Clear",
+        "label": "BSD-3-Clause-Clear"
+    }
+]

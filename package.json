@@ -1,0 +1,164 @@
+{
+    "name": "project-profile-template",
+    "description": "快速复制路径、压缩解压文件、js混淆等，支持快速创建项目相关配置文件",
+    "displayName": "文件实用工具",
+    "version": "0.0.3",
+    "publisher": "oneone",
+    "engines": {
+        "HBuilderX": "^2.7.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "main": "./extension",
+    "activationEvents": [
+        "onCommand:pt.ProjectProfileTemplate",
+        "onCommand:pt.copyRelativePath",
+        "onCommand:pt.copyPath",
+        "onCommand:pt.compress",
+        "onCommand:pt.decompress",
+        "onCommand:pt.uglifyjsCompressed",
+        "onCommand:pt.unicodeToChinese",
+        "onCommand:pt.UrlDecode",
+        "onCommand:pt.UrlEncode"
+    ],
+    "contributes": {
+        "configuration": {
+            "title": "project-profile-template - 文件模板管理",
+            "properties": {
+                "pt.CustomTemplatePath": {
+                    "type": "string",
+                    "default": "",
+                    "description": "自定义文件模板，目录名称。（ 备注：必须是目录名，目录下可以放置多个文件，自动遍历。<a href='https://ext.dcloud.net.cn/plugin?name=project-profile-template'>详情</a>）"
+                }
+            }
+        },
+        "commands": [
+            {
+                "command": "pt.ProjectProfileTemplate",
+                "title": "新建文件模板"
+            },
+            {
+                "command": "pt.copyPath",
+                "title": "复制路径"
+            },
+            {
+                "command": "pt.copyRelativePath",
+                "title": "复制相对路径"
+            },
+            {
+                "command": "pt.compress",
+                "title": "压缩为zip"
+            },
+            {
+                "command": "pt.decompress",
+                "title": "解压到当前目录"
+            },
+            {
+                "command": "pt.uglifyjsCompressed",
+                "title": "js压缩"
+            },
+            {
+                "command": "pt.unicodeToChinese",
+                "title": "unicode转中文"
+            },
+            {
+                "command": "pt.UrlDecode",
+                "title": "url解码"
+            },
+            {
+                "command": "pt.UrlEncode",
+                "title": "url编码"
+            }
+        ],
+        "expressions": {
+            "decompress": "!explorerResourceIsWorkspaceFolder && ...workspaceFolderRelativePath =~ /([zip|tar.bz2|tar.gz])$/i"
+        },
+        "menus": {
+            "explorer/context": [
+                {
+                    "command": "pt.ProjectProfileTemplate",
+                    "group": "new@0",
+                    "when": "explorerResourceCount == 1"
+                },
+                {
+                    "group": "new@0"
+                },
+                {
+                    "command": "pt.copyPath",
+                    "group": "cutcopy@0",
+                    "when": "explorerResourceCount == 1"
+                },
+                {
+                    "command": "pt.copyRelativePath",
+                    "group": "cutcopy@0",
+                    "when": "explorerResourceCount == 1"
+                },
+                {
+                    "command": "pt.decompress",
+                    "group": "rename@0",
+                    "when": "explorerResourceCount == 1 && expression.decompress"
+                },
+                {
+                    "title": "压缩",
+                    "group": "rename@0",
+                    "id": "fileUtils",
+                    "when": "explorerResourceCount == 1"
+                },
+                {
+                    "command": "pt.compress",
+                    "group": "fileUtils@1"
+                },
+                {
+                    "group": "fileUtils@2"
+                },
+                {
+                    "command": "pt.uglifyjsCompressed",
+                    "group": "fileUtils@3"
+                }
+            ],
+            "editor/context": [
+                {
+                    "command": "pt.copyRelativePath",
+                    "group": "copyPath",
+                    "when": "editorTextFocus && activeEditor.file.isProjectFile"
+                },
+                {
+                    "title": "压缩/转义/编码解码",
+                    "group": "copyPath@0",
+                    "id": "fileUtils",
+                    "when": "editorTextFocus"
+                },
+                {
+                    "command": "pt.unicodeToChinese",
+                    "group": "fileUtils@1"
+                },
+                {
+                    "group": "fileUtils@2"
+                },
+                {
+                    "command": "pt.uglifyjsCompressed",
+                    "group": "fileUtils@3"
+                },
+                {
+                    "group": "fileUtils@4"
+                },
+                {
+                    "command": "pt.UrlDecode",
+                    "group": "fileUtils@5"
+                },
+                {
+                    "command": "pt.UrlEncode",
+                    "group": "fileUtils@5"
+                }
+            ]
+        }
+    },
+    "extensionDependencies": [
+        "plugin-manager"
+    ],
+    "dependencies": {
+        "uglify-js": "^3.13.10",
+        "uglifyjs": "^2.4.11"
+    }
+}
