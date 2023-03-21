@@ -6,29 +6,37 @@ const path = require('path');
 const template_dir = path.join(path.resolve(__dirname), "template");
 
 // 用于from窗口模板展示
+let template_data = require('./config.json');
 var template_file_list = [
-    {"columns":[{"label": "空白文件" }, {"label": "空白文件" }]}
+    {"columns":[{"label": "空白文件" }, {"label": "空白文件" }]},
+    {"columns":[{"label": "README.md" }, {"label": "README.md" }]}
 ];
-
+for (let s of Object.values(template_data)) {
+    let t = { "columns":[ {"label": s["label"] }, {"label": s["desc"] } ] };
+    template_file_list.push(t);
+};
 
 /**
  * @description from视图内容项
  * @param {String} selectedDir
  */
-function getFormItems(selectedDir="") {
-    let template_data = require('./config.json');
-    for (let s of Object.values(template_data)) {
-        let t = {"columns":[{"label": s["label"] }, {"label": s["desc"] }]}
-        template_file_list.push(t)
-    }
-    let templates = [...template_file_list];
-
+function getFormItems(selectedDir="", templateID=0) {
+    let filename = "";
+    if (templateID != 0) {
+        try{
+            filename = template_file_list[templateID]["columns"][1]["label"];
+            if (filename.includes("License")) {
+                filename = "LICENSE"
+            };
+        }catch(e){};
+    };
     return {
+        title: "新建模板文件",
         formItems: [{
             "type": "input",
             "name": "filename",
             "placeholder": "文件名",
-            "value": ""
+            "value": filename
         }, {
             "type": "fileSelectInput",
             "name": "createDir",
@@ -38,11 +46,12 @@ function getFormItems(selectedDir="") {
             "type": "list",
             "title": "选择模板",
             "name": "template",
-            "columnStretches": [1, 2],
-            "items": templates,
-            "value": 0,
+            "items": template_file_list,
+            "multiSelection": false,
+            "value": templateID,
             "searchable": true,
-            "searchColumns":[1,2]
+            "searchColumns":[1,2],
+            "columnStretches": [1, 2]
         }]
     }
 };
@@ -64,6 +73,21 @@ function copyFile(template_path, target_path, isOpenFile) {
                 resolve('success');
             };
         });
+    });
+};
+
+/**
+ * @description 写入文件并打开
+ * @param {String} fpath
+ * @param {String} filecontent
+ * @param {Boolean} isOpen
+ */
+async function FileWriteAndOpen(fpath, filecontent, isOpen=true){
+    fs.writeFile(fpath, filecontent, function (err) {
+       if (err) throw err;
+       if (isOpen) {
+           hx.workspace.openTextDocument(fpath);
+       };
     });
 };
 
@@ -116,6 +140,13 @@ async function templateSelected(param) {
             let checkResult = goValidate(formData, this);
             return checkResult;
         },
+        onChanged: function(field, value) {
+            console.log(field, value)
+            if (field == "template") {
+                let updateData = getFormItems(selectedDir, value);
+                this.updateForm(updateData);
+            };
+        },
         ...getFormItems(selectedDir)
     }).then((res) => {
         return res;
@@ -129,11 +160,13 @@ async function templateSelected(param) {
         let fileID = template_file_list[template]["columns"][0]["label"];
         let selectedItem = fileID.substr(0, 1) == '.' ? fileID.slice('1') : fileID;
 
-        if (fileID == "空白文件") {
+        // 目标文件路径
+        let target_path = path.join(createDir, filename);
 
+        if (["README.md","空白文件"].includes(fileID)) {
+            await FileWriteAndOpen(target_path, "", true);
         } else {
             let source_path = path.join(template_dir, selectedItem);
-            let target_path = path.join(createDir, filename);
             await copyFile(source_path, target_path, true);
         };
     }catch(e){
