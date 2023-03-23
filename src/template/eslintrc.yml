@@ -1,0 +1,12 @@
+---
+  root: true
+  env:
+    browser: true
+    node: true
+  plugins:
+    - babel
+  extends: standard
+  rules:
+    quotes:
+      - error
+      - double

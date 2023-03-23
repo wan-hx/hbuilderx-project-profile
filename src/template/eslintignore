@@ -1,3 +1,5 @@
-flow
-dist
-packages
+dist/*
+
+!.build
+.build/*
+!.build/test.js

@@ -1,7 +1,7 @@
 {
     "name": "project-profile-template",
-    "description": "快速复制路径、压缩解压文件、js混淆等，支持快速创建项目相关配置文件",
-    "displayName": "文件实用工具",
+    "description": "快速创建项目相关配置文件快速复制路径、压缩解压文件等。",
+    "displayName": "新建模板，文件实用工具",
     "version": "0.0.3",
     "publisher": "oneone",
     "engines": {

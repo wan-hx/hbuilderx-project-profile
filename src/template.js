@@ -24,35 +24,45 @@ function getFormItems(selectedDir="", templateID=0) {
     let filename = "";
     if (templateID != 0) {
         try{
-            filename = template_file_list[templateID]["columns"][1]["label"];
-            if (filename.includes("License")) {
+            let rawTemplateName = template_file_list[templateID]["columns"][0]["label"];
+            let rawTemplateDesc = template_file_list[templateID]["columns"][1]["label"];
+            filename = rawTemplateName;
+            if (rawTemplateDesc.includes("License")) {
                 filename = "LICENSE"
             };
         }catch(e){};
     };
+    let ui_filename = {
+        "type": "input",
+        "name": "filename",
+        "placeholder": "文件名",
+        "value": filename
+    };
+    // if (templateID > 1) {
+    //     ui_filename["disabled"] = true;
+    // };
+
+    let ui_dir = {
+        "type": "fileSelectInput",
+        "name": "createDir",
+        "placeholder": "创建目录",
+        "mode": "folder",
+        "value": selectedDir
+    };
+    let ui_template = {
+        "type": "list",
+        "title": "选择模板",
+        "name": "template",
+        "items": template_file_list,
+        "multiSelection": false,
+        "value": templateID,
+        "searchable": true,
+        "searchColumns":[1,2],
+        "columnStretches": [1, 2]
+    };
     return {
         title: "新建模板文件",
-        formItems: [{
-            "type": "input",
-            "name": "filename",
-            "placeholder": "文件名",
-            "value": filename
-        }, {
-            "type": "fileSelectInput",
-            "name": "createDir",
-            "placeholder": "创建目录",
-            "value": selectedDir
-        }, {
-            "type": "list",
-            "title": "选择模板",
-            "name": "template",
-            "items": template_file_list,
-            "multiSelection": false,
-            "value": templateID,
-            "searchable": true,
-            "searchColumns":[1,2],
-            "columnStretches": [1, 2]
-        }]
+        formItems: [ ui_filename, ui_dir, ui_template]
     }
 };
 
@@ -141,7 +151,6 @@ async function templateSelected(param) {
             return checkResult;
         },
         onChanged: function(field, value) {
-            console.log(field, value)
             if (field == "template") {
                 let updateData = getFormItems(selectedDir, value);
                 this.updateForm(updateData);
@@ -158,10 +167,23 @@ async function templateSelected(param) {
     try{
         let {createDir, template, filename} = formInfo;
         let fileID = template_file_list[template]["columns"][0]["label"];
+        
+        // template目录下文件，不是以.开头，所以需要去掉.
         let selectedItem = fileID.substr(0, 1) == '.' ? fileID.slice('1') : fileID;
 
         // 目标文件路径
         let target_path = path.join(createDir, filename);
+
+        // 判断文件路径是否存在
+        let fileStatus = fs.existsSync(target_path);
+        if (fileStatus == true) {
+            let msg = `已存在文件 【${filename}】，请选择接下来的操作？`;
+            let btn = await hx.window.showInformationMessage(msg, ['覆盖', '关闭']).then((btn) => {
+                return btn;
+            });
+            if (btn != '覆盖') { return };
+            return;
+        };
 
         if (["README.md","空白文件"].includes(fileID)) {
             await FileWriteAndOpen(target_path, "", true);

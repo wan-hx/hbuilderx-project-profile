@@ -15,12 +15,24 @@
         "label": ".eslintignore"
     },
     {
-        "desc": ".eslintrc.js",
+        "desc": "使用.eslintrc.js并导出包含您的配置的对象",
         "label": ".eslintrc.js"
     },
     {
-        "desc": ".eslintrc.json",
+        "desc": "使用.eslintrc.yaml来定义配置结构",
+        "label": ".eslintrc.yaml"
+    },
+    {
+        "desc": "使用.eslintrc.yml来定义配置结构",
+        "label": ".eslintrc.yml"
+    },
+    {
+        "desc": "使用.eslintrc.json定义配置结构",
         "label": ".eslintrc.json"
+    },
+    {
+        "desc": "eslint.config.js 新的配置文件(实验性) <a href='https://eslint.org/docs/latest/use/configure/configuration-files-new'>详情</a>",
+        "label": "eslint.config.js"
     },
     {
         "desc": ".flowconfig",

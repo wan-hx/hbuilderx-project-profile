@@ -1,3 +1,4 @@
+// eslint.org官网：https://eslint.org/docs/latest/use/getting-started
 module.exports = {
     root: true,
     parserOptions: {
