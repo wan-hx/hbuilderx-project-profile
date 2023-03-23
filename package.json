@@ -1,7 +1,7 @@
 {
     "name": "project-profile-template",
-    "description": "快速创建项目相关配置文件快速复制路径、压缩解压文件等。",
-    "displayName": "新建模板，文件实用工具",
+    "description": "快速创建特殊名称的模板文件，此外支持快速复制路径、压缩解压文件等。",
+    "displayName": "新建特殊名称的文件模板",
     "version": "0.0.3",
     "publisher": "oneone",
     "engines": {
@@ -36,7 +36,7 @@
         "commands": [
             {
                 "command": "pt.ProjectProfileTemplate",
-                "title": "新建文件模板"
+                "title": "新建特定名称文件"
             },
             {
                 "command": "pt.copyPath",

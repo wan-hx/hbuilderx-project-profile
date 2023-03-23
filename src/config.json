@@ -1,5 +1,9 @@
 [
     {
+        "desc": "package.json",
+        "label": "package.json"
+    },
+    {
         "desc": ".gitignore",
         "label": ".gitignore"
     },
@@ -31,7 +35,7 @@
         "label": ".eslintrc.json"
     },
     {
-        "desc": "eslint.config.js 新的配置文件(实验性) <a href='https://eslint.org/docs/latest/use/configure/configuration-files-new'>详情</a>",
+        "desc": "eslint.config.js 新的配置文件(实验性)",
         "label": "eslint.config.js"
     },
     {
@@ -88,5 +92,9 @@
     {
         "desc": "License_BSD_3_Clause_Clear",
         "label": "BSD-3-Clause-Clear"
+    },
+    {
+        "desc": "AndroidManifest.xml",
+        "label": "AndroidManifest.xml"
     }
 ]

@@ -73,7 +73,6 @@ function getSelectInfo(param) {
  * @param {Object} param
  */
 async function main(param, action) {
-    console.log("-----", param, action)
     if (param == null) {
         return;
     };

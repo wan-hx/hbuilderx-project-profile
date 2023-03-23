@@ -38,16 +38,17 @@ function getFormItems(selectedDir="", templateID=0) {
         "placeholder": "文件名",
         "value": filename
     };
-    // if (templateID > 1) {
-    //     ui_filename["disabled"] = true;
-    // };
+    if (templateID > 1) {
+        ui_filename["disabled"] = true;
+    };
 
     let ui_dir = {
         "type": "fileSelectInput",
         "name": "createDir",
         "placeholder": "创建目录",
         "mode": "folder",
-        "value": selectedDir
+        "value": selectedDir,
+        "disabled": true
     };
     let ui_template = {
         "type": "list",
@@ -61,7 +62,7 @@ function getFormItems(selectedDir="", templateID=0) {
         "columnStretches": [1, 2]
     };
     return {
-        title: "新建模板文件",
+        title: "快速新建特殊名称文件",
         formItems: [ ui_filename, ui_dir, ui_template]
     }
 };
@@ -141,7 +142,7 @@ async function templateSelected(param) {
     };
 
     let formInfo = await hx.window.showFormDialog({
-        title: "新建模板文件",
+        title: "新建特殊文件模板",
         width: 640,
         height: 480,
         submitButtonText: "创建(&S)",
@@ -150,10 +151,15 @@ async function templateSelected(param) {
             let checkResult = goValidate(formData, this);
             return checkResult;
         },
+        onOpened: async function() {
+            var forms = getFormItems(selectedDir);
+            this.updateForm(forms);
+        },
         onChanged: function(field, value) {
+            let that = this;
             if (field == "template") {
                 let updateData = getFormItems(selectedDir, value);
-                this.updateForm(updateData);
+                that.updateForm(updateData);;
             };
         },
         ...getFormItems(selectedDir)
@@ -167,7 +173,7 @@ async function templateSelected(param) {
     try{
         let {createDir, template, filename} = formInfo;
         let fileID = template_file_list[template]["columns"][0]["label"];
-        
+
         // template目录下文件，不是以.开头，所以需要去掉.
         let selectedItem = fileID.substr(0, 1) == '.' ? fileID.slice('1') : fileID;
 
