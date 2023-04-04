@@ -1,16 +1,14 @@
-# 文件模板管理
+# 文件实用工具
 
-## 使用步骤
+本插件包含以下功能：
 
-1. 点击顶部菜单【工具】【文件模板管理】
-2. 输入要创建的模板名称
-
-## 自定义文件模板
-
-点击菜单【设置】【插件配置】，输入自定义目录名。
-
-- 必须是目录名称。
-- 目录下可以放置多个文件，自动遍历。
+* 复制路径
+* 复制相对路径
+* 左侧视图右键菜单：新建特定名称文件
+* 左侧视图右键菜单：zip压缩、解压缩
+* 左侧视图右键菜单：js压缩
+* 编辑器右键菜单：unicode转中文
+* 编辑器右键菜单【url解码、编码】
 
 ## 配置快捷键
 
@@ -21,21 +19,20 @@
 ```
 {
     "key":"",
-    "command": "pt.ProjectProfileTemplate"
+    "command": ""
 }
 ```
 
-修改后，正确的格式为：
-```
-[
-    {
-        "key":"",
-        "command": "pt.ProjectProfileTemplate"
-    },
-    {
-        "key":"",
-        "command": "xxxxxxxx"
-    }
-]
-```
+|描述				|command					|
+|--					|--							|
+|复制路径			|pt.copyPath				|
+|复制相对路径		|pt.copyRelativePath		|
+|新建特定名称文件	|pt.ProjectProfileTemplate	|
+|压缩为zip			|pt.compress				|
+|解压到当前目录		|pt.decompress				|
+|js压缩				|pt.uglifyjsCompressed		|
+|unicode转中文		|pt.unicodeToChinese		|
+|URL解码			|pt.UrlDecode				|
+|URL编码			|pt.UrlEncode				|
+
 
