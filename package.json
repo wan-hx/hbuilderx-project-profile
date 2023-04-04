@@ -23,16 +23,6 @@
         "onCommand:pt.UrlEncode"
     ],
     "contributes": {
-        "configuration": {
-            "title": "project-profile-template - 文件模板管理",
-            "properties": {
-                "pt.CustomTemplatePath": {
-                    "type": "string",
-                    "default": "",
-                    "description": "自定义文件模板，目录名称。（ 备注：必须是目录名，目录下可以放置多个文件，自动遍历。<a href='https://ext.dcloud.net.cn/plugin?name=project-profile-template'>详情</a>）"
-                }
-            }
-        },
         "commands": [
             {
                 "command": "pt.ProjectProfileTemplate",

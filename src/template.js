@@ -63,7 +63,7 @@ function getFormItems(selectedDir="", templateID=0) {
     };
     return {
         title: "快速新建特殊名称文件",
-        formItems: [ ui_filename, ui_dir, ui_template]
+        formItems: [ ui_filename, ui_dir, ui_template ]
     }
 };
 
