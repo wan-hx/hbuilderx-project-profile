@@ -46,7 +46,7 @@
             },
             {
                 "command": "pt.uglifyjsCompressed",
-                "title": "js压缩"
+                "title": "压缩js文件"
             },
             {
                 "command": "pt.unicodeToChinese",
@@ -64,6 +64,18 @@
         "expressions": {
             "decompress": "!explorerResourceIsWorkspaceFolder && ...workspaceFolderRelativePath =~ /([zip|tar.bz2|tar.gz])$/i"
         },
+        "keybindings":[
+            {
+                "command":"pt.ProjectProfileTemplate",
+                "key":"Ctrl+Shift+N",
+                "macosx":"command+Ctrl+N"
+            },
+            {
+                "command":"pt.copyRelativePath",
+                "key":"Ctrl+Shift+C",
+                "macosx":"command+Ctrl+C"
+            }
+        ],
         "menus": {
             "explorer/context": [
                 {
