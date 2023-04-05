@@ -267,7 +267,7 @@ async function decompress(selectInfo) {
     if (osName == 'darwin') {
         if (ext == ".zip") {
             let param1 = selectBtn == '解压并覆盖' ? ' -o ' : ' -n ';
-            runCmd(`unzip -v ${param1} ${base}`, cmdOptions, "解压zip");
+            runCmd(`unzip ${param1} ${base}`, cmdOptions, "解压zip");
         };
         if (ext == '.bz2') {
             let tarbz2 = base.substring(base.length-8);
