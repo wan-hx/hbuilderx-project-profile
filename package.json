@@ -1,8 +1,8 @@
 {
     "name": "project-profile-template",
     "description": "快速创建特殊名称的模板文件，此外支持快速复制路径、压缩解压文件等。",
-    "displayName": "新建特殊名称的文件模板",
-    "version": "0.0.3",
+    "displayName": "文件使用工具 - 新建特殊名称的文件模板",
+    "version": "0.1.0",
     "publisher": "oneone",
     "engines": {
         "HBuilderX": "^2.7.0"
