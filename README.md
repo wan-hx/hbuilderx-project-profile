@@ -4,11 +4,13 @@
 
 * 复制路径
 * 复制相对路径
-* 左侧视图右键菜单：新建特定名称文件
+* 左侧视图右键菜单：新建特定名称文件，比如License、.editorconfig、.gitignore等
 * 左侧视图右键菜单：zip压缩、解压缩
 * 左侧视图右键菜单：js压缩
 * 编辑器右键菜单：unicode转中文
 * 编辑器右键菜单【url解码、编码】
+
+![](https://img-cdn-aliyun.dcloud.net.cn/stream/plugin_screens/6a66d420-56de-11eb-9b8b-3b53cb239112_0.png)
 
 ## 配置快捷键
 
